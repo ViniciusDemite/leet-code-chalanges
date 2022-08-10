@@ -65,6 +65,12 @@ class TestLongestCommonPrefix(unittest.TestCase):
 
     self.assertEqual(common_prefix, '')
 
+  def test_longest_common_prefix_returns_lee_str(self):
+    solution = Solution()
+    common_prefix = solution.longestCommonPrefix(["leets", "leetcode", "leet", "leeds"])
+
+    self.assertEqual(common_prefix, 'lee')
+
 
 if __name__ == '__main__':
   unittest.main(verbosity=2)

@@ -9,19 +9,14 @@ class Solution:
         if self._validate_list_and_items(strs):
           raise ValueError('Verifique se a lista de palavras apresenta e cada palavra está entre 1 e 200!')
 
-        common_prefix: str = ''
-        first_word, *sliced_strs = strs
+        common_prefix, *remaining_strs = strs
 
-        for first_word_letter in first_word:
-          all_words_have_common_prefix = True
-
-          for word in sliced_strs:
-            if first_word_letter not in word:
-              all_words_have_common_prefix = False
+        for index in range(0, len(remaining_strs)):
+          while True:
+            if remaining_strs[index].startswith(common_prefix):
               break
 
-          if all_words_have_common_prefix:
-            common_prefix += first_word_letter
+            common_prefix = common_prefix[:len(common_prefix) - 1]
 
         return common_prefix
 
