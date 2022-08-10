@@ -10,18 +10,19 @@ class Solution:
           raise ValueError('Verifique se a lista de palavras apresenta e cada palavra está entre 1 e 200!')
 
         common_prefix: str = ''
+        first_word: str = strs[0]
         sliced_strs: List[str] = strs[1:]
 
-        for letter in strs[0]:
+        for first_word_letter in first_word:
           all_words_have_common_prefix = True
 
           for word in sliced_strs:
-            if letter not in word:
+            if first_word_letter not in word:
               all_words_have_common_prefix = False
               break
 
           if all_words_have_common_prefix:
-            common_prefix += letter
+            common_prefix += first_word_letter
 
         return common_prefix
 
