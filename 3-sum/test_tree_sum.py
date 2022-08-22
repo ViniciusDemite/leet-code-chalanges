@@ -22,19 +22,19 @@ class TestTreeSum(unittest.TestCase):
     solution = Solution()
     sums = [0, 1, 1]
 
-    self.assertEqual(solution.threeSum(sums), [])
+    self.assertListEqual(solution.threeSum(sums), [])
 
   def test_tree_sum_returns_two_triplets(self):
     solution = Solution()
     sums = [-1, 0, 1, 2, -1, -4]
 
-    self.assertEqual(solution.threeSum(sums), [[-1, -1, 2], [-1, 0, 1]])
+    self.assertListEqual(solution.threeSum(sums), [[-1, -1, 2], [-1, 0, 1]])
 
   def test_tree_sum_returns_single_triplet_of_zeros(self):
     solution = Solution()
-    sums = [0,0,0]
+    sums = [0, 0 ,0]
 
-    self.assertEqual(solution.threeSum(sums), [[0, 0, 0]])
+    self.assertListEqual(solution.threeSum(sums), [[0, 0, 0]])
 
 
 if __name__ == '__main__':

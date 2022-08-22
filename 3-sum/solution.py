@@ -1,5 +1,4 @@
 from typing import List
-from itertools import combinations
 
 
 class Solution:
@@ -7,22 +6,32 @@ class Solution:
         assert len(nums) >= 3 and len(nums) <= 3000, 'É necessário ter mais de 3 números na lista!!'
         assert all(isinstance(number, int) for number in nums), 'Todos os elementos da lista devem ser um inteiro'
 
+        nums.sort()
         triplets: List[List[int]] = []
+        nums_len = len(nums)
 
-        for index in range(0, len(nums)):
-          combination: List[int] = []
-          n1 = nums[index]
+        for n1_index in range(nums_len - 2):
+          if n1_index > 0 and nums[n1_index] == nums[n1_index - 1]:
+            continue
 
-          if n1 != nums[index + 1] and n1 != nums[index + 2]:
-            combination.append(n1)
+          (n2_index, n3_index) = (n1_index + 1, nums_len - 1)
 
-          if sum(combination) == 0:
-            triplets.append(combination)
+          while n2_index < n3_index:
+            triplet_sum = nums[n1_index] + nums[n2_index] + nums[n3_index]
 
-        # combined_nums = combinations(nums, 3)
+            if triplet_sum == 0:
+              triplets.append([
+                nums[n1_index], nums[n2_index], nums[n3_index]
+              ])
 
-        # for combination in combined_nums:
-        #   if sum([number for number in combination]) == 0:
-        #     triplets.append(list(combination))
+              n3_index -= 1
+
+              while n2_index < n3_index and \
+              nums[n3_index] == nums[n3_index + 1]:
+                n3_index -= 1
+            elif triplet_sum > 0:
+              n3_index -= 1
+            else:
+              n2_index += 1
 
         return triplets
